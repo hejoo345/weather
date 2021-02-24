@@ -9,17 +9,7 @@ const CurrentWeather = ({openweathermap}) => {
 
     useEffect(()=>{
         openweathermap.currentWeather()
-        .then(console.log);
-
-        // const requestOptions = {
-        //     method: 'GET',
-        //     redirect: 'follow'
-        // };
-        
-        // fetch("http://api.openweathermap.org/data/2.5/weather?lat=35.3631294&lon=129.0508055&appid=314b00b1986d5625b19587c57c1874a6", requestOptions)
-        //     .then(response => response.json())
-        //     .then(result => console.log(result))
-        //     .catch(error => console.log('error', error));
+        .then(console.log);;
     });
     
     const currentLocation = ()=>{
