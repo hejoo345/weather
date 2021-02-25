@@ -1,0 +1,19 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 2em 2em;
+}
+.search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.info {
+  display: flex;
+  flex-direction: column;
+}
+.detail {
+  display: flex;
+  flex-direction: column;
+}

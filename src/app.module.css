@@ -1,0 +1,15 @@
+.app {
+  display: flex;
+}
+.current {
+  display: flex;
+  flex: 35%;
+  height: 100vh;
+}
+.info {
+  display: flex;
+  flex: 65%;
+  height: 100vh;
+  flex-direction: column;
+  background-color: #f1f1f4;
+}

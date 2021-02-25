@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import SearchBar from '../search_bar/search_bar';
 import styles from './current_weather.module.css';
 
 const CurrentWeather = ({openweathermap}) => {
@@ -7,9 +8,10 @@ const CurrentWeather = ({openweathermap}) => {
         lon: '127',
     });
 
+
     useEffect(()=>{
-        openweathermap.currentWeather()
-        .then(console.log);;
+        // openweathermap.currentWeather(location.lat, location.lon)
+        // .then(console.log);
     });
     
     const currentLocation = ()=>{
@@ -34,12 +36,23 @@ const CurrentWeather = ({openweathermap}) => {
     }
 
     // const getWeather
-
+        {/* <button onClick={currentLocation}>현재 위치</button> */}
     return(
-        <>
-        <button onClick={currentLocation}>현재 위치</button>
-        <h1>{location.lat},{location.lon}</h1>
-        </>
+        <section className={styles.main}>
+            <div className={styles.search}>
+                <SearchBar/>
+                <i className="fas fa-location-arrow"></i>
+            </div>
+            <div className={styles.info}>
+                <img alt='날씨아이콘'></img>
+                <span>기온 12도</span>
+                <span>Monday, 01:27</span>
+            </div>
+            <div className={styles.detail}>
+                <span>right rain</span>
+                <span>Yangsan</span>
+            </div>
+        </section>
 
     )
 };

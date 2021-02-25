@@ -7,13 +7,27 @@ class OpenWeatherMap{
         };
     }
 
-    async currentWeather(){
-        return await fetch(`http://api.openweathermap.org/data/2.5/weather?lat=35.3631294&lon=129.0508055&appid=${this.key}`,
+    async currentWeather(lat, lon){
+        return await fetch(`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${this.key}`,
                 this.requestOptions)
                 .then(response => response.json())
                 .then(result=>result);
-        // const result = await response.json();
-        // return result;
     }
+
+    async weekWeather(lat, lon){
+        return await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly,alerts&appid=${this.key}`,
+                this.requestOptions)
+                .then(response => response.json())
+                .then(result=>result);
+    }
+
+    async searchCityWeather(city){
+        return await fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${this.key}`,
+                this.requestOptions)
+                .then(response => response.json())
+                .then(result=>result);
+    }
+
+
 }
 export default OpenWeatherMap;

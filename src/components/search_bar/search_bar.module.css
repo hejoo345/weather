@@ -1,0 +1,14 @@
+.search {
+  font-size: 1.5em;
+  padding: 0.5rem 0.5rem;
+  border: 2px solid lightgrey;
+  border-radius: 20px;
+  display: flex;
+}
+input {
+  border-style: none;
+}
+.icon {
+  font-size: 1rem;
+  color: lightgrey;
+}
