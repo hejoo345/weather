@@ -1,57 +1,38 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import SearchBar from '../search_bar/search_bar';
 import styles from './current_weather.module.css';
 
-const CurrentWeather = ({openweathermap}) => {
-    const [location, setLocation] = useState({
-        lat: '35.5833',
-        lon: '127',
-    });
+const CurrentWeather = ({currentWeather,currentLocation}) => {
+    const day = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+    const date = new Date(currentWeather.dt * 1000);
+    console.log(date);
 
-
-    useEffect(()=>{
-        // openweathermap.currentWeather(location.lat, location.lon)
-        // .then(console.log);
-    });
-    
-    const currentLocation = ()=>{
-        if(navigator.geolocation){
-            navigator.geolocation.getCurrentPosition(
-                (position) => {
-                    setLocation({
-                        ...location,
-                        lat: position.coords.latitude.toFixed(6),
-                        lon: position.coords.longitude.toFixed(6),
-                    });
-                    console.log(`latitude 위도 : ${position.coords.latitude}`);
-                    console.log(`longitude 경도 : ${position.coords.longitude}`);
-                },
-                (error) => {
-                    console.error(error);
-                }
-                );
-        }else{
-            console.log('지원 x');
-        }
-    }
-
-    // const getWeather
-        {/* <button onClick={currentLocation}>현재 위치</button> */}
     return(
         <section className={styles.main}>
             <div className={styles.search}>
                 <SearchBar/>
-                <i className="fas fa-location-arrow"></i>
+                <div className={styles.locationIcon} onClick={currentLocation}>
+                    <span><i className="fas fa-location-arrow" ></i></span>
+                </div>
             </div>
+            {currentWeather.name && (
             <div className={styles.info}>
-                <img alt='날씨아이콘'></img>
-                <span>기온 12도</span>
-                <span>Monday, 01:27</span>
-            </div>
+                <img src={`http://openweathermap.org/img/w/${currentWeather.weather[0].icon}.png`} alt='날씨아이콘'></img>
+                <div className={styles.tempInfo}>
+                    <span className={styles.temp}>{currentWeather.main.temp-273.15}</span>
+                    <span className={styles.tempIcon}>°C</span>
+                </div>
+                <div className={styles.dateInfo}>
+                    <span className={styles.day}>{day[date.getDay()]},</span>
+                    <span className={styles.hour}>{date.getHours()}시</span>
+                </div>
+            </div>)}
+            {currentWeather.name && (
             <div className={styles.detail}>
-                <span>right rain</span>
-                <span>Yangsan</span>
-            </div>
+                <span className={styles.description}>{currentWeather.weather[0].description}</span>
+                <span className={styles.name}>{currentWeather.name}, {currentWeather.sys.country}</span>
+            </div>)}
+            
         </section>
 
     )
