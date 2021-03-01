@@ -18,7 +18,7 @@ class OpenWeatherMap{
         return await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly,alerts&appid=${this.key}`,
                 this.requestOptions)
                 .then(response => response.json())
-                .then(result=>result);
+                .then(result=>result.daily);
     }
 
     async searchCityWeather(city){

@@ -1,0 +1,31 @@
+.container {
+  margin: 0 1rem;
+}
+ul {
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 0;
+}
+li {
+  list-style: none;
+  background-color: white;
+  font-size: 1rem;
+  margin: 0 0 1em 1em;
+  padding: 1em 1em;
+  border-radius: 20px;
+  width: 10em;
+  height: 10em;
+  /* transition: all 2s; */
+  display: flex;
+  flex-direction: column;
+}
+li span {
+  font-size: 1.3em;
+}
+.windSpeed {
+  font-size: 2em;
+}
+.sun {
+  display: flex;
+  flex-direction: column;
+}

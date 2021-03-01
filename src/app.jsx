@@ -7,6 +7,7 @@ import WeekWeather from './components/week_weather/week_weather';
 function App({openweathermap}) {
 
   const [currentWeather , setCurrentWeather] = useState({});
+  const [weekWeather, setWeekWeather] = useState({});
   const [location, setLocation] = useState({
     lat: '35.5833',
     lon: '127',
@@ -15,8 +16,16 @@ function App({openweathermap}) {
   useEffect(()=>{
     openweathermap.currentWeather(location.lat, location.lon)
     .then(weather => {
-      const newWeather = {...weather}
-      setCurrentWeather(newWeather)
+      const newWeather = {...weather};
+      setCurrentWeather(newWeather);
+    });
+  },[openweathermap, location]);
+
+  useEffect(()=>{
+    openweathermap.weekWeather(location.lat, location.lon)
+    .then(weather => {
+      const newWeekWeather = {...weather};
+      setWeekWeather(newWeekWeather);
     });
   },[openweathermap, location]);
 
@@ -50,8 +59,10 @@ function App({openweathermap}) {
         currentLocation={currentLocation}/>
       </div>
       <div className={styles.info}>
-        <WeekWeather/>
-        <TodayHighlights/>
+        <WeekWeather
+        weekWeather={weekWeather}/>
+        <TodayHighlights 
+        currentWeather={currentWeather}/>
       </div>
     </section>
   );

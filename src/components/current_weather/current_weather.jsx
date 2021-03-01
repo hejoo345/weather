@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { memo } from 'react';
 import SearchBar from '../search_bar/search_bar';
 import styles from './current_weather.module.css';
 
-const CurrentWeather = ({currentWeather,currentLocation}) => {
+const CurrentWeather = memo(({currentWeather,currentLocation}) => {
     const day = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
     const date = new Date(currentWeather.dt * 1000);
     console.log(date);
@@ -17,9 +17,9 @@ const CurrentWeather = ({currentWeather,currentLocation}) => {
             </div>
             {currentWeather.name && (
             <div className={styles.info}>
-                <img src={`http://openweathermap.org/img/w/${currentWeather.weather[0].icon}.png`} alt='날씨아이콘'></img>
+                <img className={styles.img} src={`http://openweathermap.org/img/wn/${currentWeather.weather[0].icon}@2x.png`} alt='날씨아이콘'></img>
                 <div className={styles.tempInfo}>
-                    <span className={styles.temp}>{currentWeather.main.temp-273.15}</span>
+                    <span className={styles.temp}>{parseInt(currentWeather.main.temp-273.15)}</span>
                     <span className={styles.tempIcon}>°C</span>
                 </div>
                 <div className={styles.dateInfo}>
@@ -36,6 +36,6 @@ const CurrentWeather = ({currentWeather,currentLocation}) => {
         </section>
 
     )
-};
+})
 
 export default CurrentWeather;
