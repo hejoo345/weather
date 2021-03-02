@@ -2,15 +2,16 @@ import React, { memo } from 'react';
 import SearchBar from '../search_bar/search_bar';
 import styles from './current_weather.module.css';
 
-const CurrentWeather = memo(({currentWeather,currentLocation}) => {
+const CurrentWeather = memo(({currentWeather,currentLocation,onSearch}) => {
     const day = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
     const date = new Date(currentWeather.dt * 1000);
-    console.log(date);
+    console.log(currentWeather);
 
     return(
         <section className={styles.main}>
             <div className={styles.search}>
-                <SearchBar/>
+                <SearchBar
+                onSearch={onSearch}/>
                 <div className={styles.locationIcon} onClick={currentLocation}>
                     <span><i className="fas fa-location-arrow" ></i></span>
                 </div>
@@ -30,7 +31,7 @@ const CurrentWeather = memo(({currentWeather,currentLocation}) => {
             {currentWeather.name && (
             <div className={styles.detail}>
                 <span className={styles.description}>{currentWeather.weather[0].description}</span>
-                <span className={styles.name}>{currentWeather.name}, {currentWeather.sys.country}</span>
+                <span className={styles.name}><i className="fas fa-map-marker-alt"></i>{currentWeather.name}, {currentWeather.sys.country}</span>
             </div>)}
             
         </section>

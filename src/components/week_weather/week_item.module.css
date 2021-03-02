@@ -1,0 +1,22 @@
+.container {
+  background-color: white;
+  border-radius: 20px;
+  width: 20%;
+  height: 7rem;
+  margin: 0 0.5em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.img {
+  width: 4em;
+  height: 4em;
+}
+.maxTemp {
+  margin-right: 0.5em;
+}
+.minTemp {
+  margin-left: 0.5em;
+  color: grey;
+}

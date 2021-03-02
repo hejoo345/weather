@@ -39,9 +39,7 @@ function App({openweathermap}) {
                   lat: position.coords.latitude.toFixed(6),
                   lon: position.coords.longitude.toFixed(6),
                 }));
-                // console.log(`latitude 위도 : ${position.coords.latitude}`);
-                // console.log(`longitude 경도 : ${position.coords.longitude}`);
-            },
+               },
             (error) => {
                 console.error(error);
             }
@@ -51,12 +49,22 @@ function App({openweathermap}) {
     }
   }
 
+  const onSearch = (value)=>{
+    console.log(value);
+    openweathermap.searchCityWeather(value)
+    .then(weather=>{
+      const newWeather = {...weather};
+      setCurrentWeather(newWeather);
+    });
+  }
+
   return (
     <section className={styles.app}>
       <div className={styles.current}>
         <CurrentWeather
         currentWeather={currentWeather}
-        currentLocation={currentLocation}/>
+        currentLocation={currentLocation}
+        onSearch={onSearch}/>
       </div>
       <div className={styles.info}>
         <WeekWeather
