@@ -3,6 +3,7 @@ import CurrentWeather from './components/current_weather/current_weather';
 import styles from './app.module.css';
 import TodayHighlights from './components/today_highlights/today_highlights';
 import WeekWeather from './components/week_weather/week_weather';
+import Bookmark from './components/bookmark/bookmark';
 
 function App({openweathermap}) {
 
@@ -58,19 +59,29 @@ function App({openweathermap}) {
     });
   }
 
+  const addBookmark = (cityId, cityName)=>{
+    console.log(cityId, cityName);
+  }
+
   return (
     <section className={styles.app}>
-      <div className={styles.current}>
-        <CurrentWeather
-        currentWeather={currentWeather}
-        currentLocation={currentLocation}
-        onSearch={onSearch}/>
+      <div className={styles.main}>
+        <div className={styles.current}>
+          <CurrentWeather
+          currentWeather={currentWeather}
+          currentLocation={currentLocation}
+          onSearch={onSearch}
+          addBookmark={addBookmark}/>
+        </div>
+        <div className={styles.info}>
+          <WeekWeather
+          weekWeather={weekWeather}/>
+          <TodayHighlights 
+          currentWeather={currentWeather}/>
+        </div>
       </div>
-      <div className={styles.info}>
-        <WeekWeather
-        weekWeather={weekWeather}/>
-        <TodayHighlights 
-        currentWeather={currentWeather}/>
+      <div>
+        <Bookmark/>
       </div>
     </section>
   );

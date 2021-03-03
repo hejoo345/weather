@@ -12,6 +12,10 @@
 .info {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5em;
+  border-bottom: 1px solid lightgrey;
 }
 .detail {
   display: flex;
@@ -20,22 +24,25 @@
   font-size: 1.1em;
 }
 .img {
-  width: 20em;
-  height: 20em;
+  width: 2em;
+  height: 2em;
 }
 .tempInfo,
 .dateInfo {
   display: flex;
-  padding-bottom: 1em;
 }
 .temp {
   font-size: 4rem;
+}
+.tempInfo {
+  margin-top: 2em;
+  margin-bottom: 5em;
 }
 .tempIcon {
   font-size: 2em;
 }
 .dateInfo {
-  border-bottom: 1px solid lightgrey;
+  margin-bottom: 1em;
 }
 .day,
 .hour {
@@ -45,11 +52,35 @@
   color: lightgrey;
   margin-left: 0.5em;
 }
-.description,
-.name {
-  padding-bottom: 1em;
-}
 .locationIcon {
   border-radius: 20px;
   cursor: pointer;
+  position: relative;
+  right: -2em;
+}
+.imgAndDes {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1em;
+}
+.loca {
+  display: flex;
+}
+.locaIcon {
+  margin: 0 0.6em;
+}
+.add {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.8em;
+  cursor: pointer;
+}
+.addIcon {
+  width: 2em;
+  height: 2em;
+  border: 2px solid black;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
