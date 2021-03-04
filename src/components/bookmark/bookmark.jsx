@@ -1,8 +1,24 @@
-import React from 'react';
+import React, { memo } from 'react';
+import BookmarkItem from './bookmark_item';
+import styles from './bookmark.module.css';
 
-const Bookmark = (props) => {
+const Bookmark = memo(({bookmark, onSearch, removeBookmark}) => {
     return(
-            <h1>Bookmark</h1>
-    )};
+        <section className={styles.container}>
+            <h1 className={styles.title}>Bookmark</h1>
+            <div className={styles.items}>
+            {
+                bookmark.map(item=>(
+                    <BookmarkItem 
+                    key={item}
+                    bookmarkItem={item}
+                    onSearch={onSearch}
+                    removeBookmark={removeBookmark}/>
+                ))
+            }
+            </div>
+
+        </section>
+    )})
 
 export default Bookmark;

@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { memo } from 'react';
 import styles from './week_item.module.css';
 
-const WeekItem = ({weather}) => {
+const WeekItem = memo(({weather}) => {
     const day = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
     const date = new Date(weather.dt * 1000);
     return(
@@ -14,6 +14,6 @@ const WeekItem = ({weather}) => {
                     <span className={styles.minTemp}>{parseInt(weather.temp.min-273.15)}</span>
                 </div>
             </div>
-    )};
+    )})
 
 export default WeekItem;

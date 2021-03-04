@@ -13,6 +13,7 @@ function App({openweathermap}) {
     lat: '35.5833',
     lon: '127',
   });
+  const [bookmark, setBookmark] = useState(JSON.parse(localStorage.getItem('bookmark'))||[]);
 
   useEffect(()=>{
     openweathermap.currentWeather(location.lat, location.lon)
@@ -51,16 +52,31 @@ function App({openweathermap}) {
   }
 
   const onSearch = (value)=>{
-    console.log(value);
     openweathermap.searchCityWeather(value)
     .then(weather=>{
       const newWeather = {...weather};
       setCurrentWeather(newWeather);
+      setLocation((location)=>({
+        ...location,
+        lat: weather.coord.lat.toFixed(6),
+        lon: weather.coord.lon.toFixed(6),
+      }));
     });
   }
 
-  const addBookmark = (cityId, cityName)=>{
-    console.log(cityId, cityName);
+  const addBookmark = (cityName)=>{
+    setBookmark((bookmark)=>{
+      const newBookmark = [...bookmark];
+      newBookmark.push(cityName);
+      localStorage.setItem('bookmark',JSON.stringify(newBookmark));
+      return newBookmark;
+    })
+  }
+
+  const removeBookmark = (cityName)=>{
+    const newBookmarks = bookmark.filter(item=>item!==cityName);
+    localStorage.setItem('bookmark',JSON.stringify(newBookmarks));
+    setBookmark(newBookmarks);
   }
 
   return (
@@ -71,7 +87,8 @@ function App({openweathermap}) {
           currentWeather={currentWeather}
           currentLocation={currentLocation}
           onSearch={onSearch}
-          addBookmark={addBookmark}/>
+          addBookmark={addBookmark}
+          bookmark={bookmark}/>
         </div>
         <div className={styles.info}>
           <WeekWeather
@@ -80,8 +97,10 @@ function App({openweathermap}) {
           currentWeather={currentWeather}/>
         </div>
       </div>
-      <div>
-        <Bookmark/>
+      <div className={styles.bookmark}>
+        <Bookmark bookmark={bookmark}
+        onSearch={onSearch}
+        removeBookmark={removeBookmark}/>
       </div>
     </section>
   );

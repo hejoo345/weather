@@ -1,0 +1,13 @@
+.items {
+  display: flex;
+  overflow-x: auto;
+  margin-bottom: 2rem;
+}
+.container {
+  margin: 0 1rem;
+}
+.title {
+  color: white;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}

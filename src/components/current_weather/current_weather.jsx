@@ -2,18 +2,17 @@ import React, { memo } from 'react';
 import SearchBar from '../search_bar/search_bar';
 import styles from './current_weather.module.css';
 
-const CurrentWeather = memo(({currentWeather,currentLocation,onSearch,addBookmark}) => {
+const CurrentWeather = memo(({currentWeather,currentLocation,onSearch,addBookmark,bookmark}) => {
     const day = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
     const date = new Date(currentWeather.dt * 1000);
-    console.log(currentWeather);
+    // console.log(currentWeather);
 
-    const items = JSON.parse(localStorage.getItem('items'))||[]; // 북마크되어 있는 도시들 담김
-    const includeCheck = items.includes(currentWeather.name); //도시 이름 체크 있으면 true
+    const includeCheck = bookmark.includes(currentWeather.name); //도시 이름 체크 있으면 true
+    // console.log(`북마크되어 있나요?${includeCheck}`);
     const addBookmarkHandle=(e)=>{
         e.preventDefault();
-        const cityId = currentWeather.id;
         const cityName = currentWeather.name;
-        addBookmark(cityId, cityName);
+        addBookmark(cityName);
     }
 
     return(
@@ -48,9 +47,11 @@ const CurrentWeather = memo(({currentWeather,currentLocation,onSearch,addBookmar
                     <span className={styles.name}>{currentWeather.name}, {currentWeather.sys.country}</span>
                 </div>
             </div>)}
+            { !includeCheck && (
             <div className={styles.add} onClick={addBookmarkHandle}>
                 <span className={styles.addIcon}><i className="fas fa-plus"></i></span>
             </div>
+            )}
             
         </section>
 

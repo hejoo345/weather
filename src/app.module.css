@@ -1,6 +1,7 @@
 .app {
   display: flex;
   flex-direction: column;
+  height: 100vh;
 }
 .main {
   display: flex;
@@ -18,6 +19,11 @@
   background-color: #f1f1f4;
 
   min-width: 0;
+}
+.bookmark {
+  min-width: 0;
+  background-color: #464b7e;
+  height: 100%;
 }
 @media screen and (max-width: 48rem) {
   .main {

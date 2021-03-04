@@ -72,7 +72,7 @@
 .add {
   display: flex;
   justify-content: center;
-  margin-top: 1.8em;
+  margin-top: 2em;
   cursor: pointer;
 }
 .addIcon {

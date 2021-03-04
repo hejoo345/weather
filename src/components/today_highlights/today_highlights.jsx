@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { memo } from 'react';
 import styles from './today_highlights.module.css';
 
-const TodayHighlights = ({currentWeather}) => {
+const TodayHighlights = memo(({currentWeather}) => {
     // if(!currentWeather.name) console.log('비었음');
     // console.log(currentWeather);
     let sunrise = '';
@@ -58,6 +58,6 @@ const TodayHighlights = ({currentWeather}) => {
             )}
         </section>
         
-    )};
-
+    )}
+)
 export default TodayHighlights;
