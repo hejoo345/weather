@@ -5,10 +5,8 @@ import styles from './current_weather.module.css';
 const CurrentWeather = memo(({currentWeather,currentLocation,onSearch,addBookmark,bookmark}) => {
     const day = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
     const date = new Date(currentWeather.dt * 1000);
-    // console.log(currentWeather);
 
     const includeCheck = bookmark.includes(currentWeather.name); //도시 이름 체크 있으면 true
-    // console.log(`북마크되어 있나요?${includeCheck}`);
     const addBookmarkHandle=(e)=>{
         e.preventDefault();
         const cityName = currentWeather.name;
