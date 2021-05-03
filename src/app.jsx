@@ -18,16 +18,14 @@ function App({openweathermap}) {
   useEffect(()=>{
     openweathermap.currentWeather(location.lat, location.lon)
     .then(weather => {
-      const newWeather = {...weather};
-      setCurrentWeather(newWeather);
+      setCurrentWeather(weather);
     });
   },[openweathermap, location]);
 
   useEffect(()=>{
     openweathermap.weekWeather(location.lat, location.lon)
     .then(weather => {
-      const newWeekWeather = {...weather};
-      setWeekWeather(newWeekWeather);
+      setWeekWeather(weather);
     });
   },[openweathermap, location]);
 
@@ -54,13 +52,18 @@ function App({openweathermap}) {
   const onSearch = (value)=>{
     openweathermap.searchCityWeather(value)
     .then(weather=>{
-      const newWeather = {...weather};
-      setCurrentWeather(newWeather);
+      if(weather.cod === '404'){ // 지역 검색 오류난 경우
+        throw new Error('city not found');
+      }
+      setCurrentWeather(weather);
       setLocation((location)=>({
         ...location,
         lat: weather.coord.lat.toFixed(6),
         lon: weather.coord.lon.toFixed(6),
       }));
+    })
+    .catch(()=>{
+      alert('지역명을 올바르게 입력해주세요.');
     });
   }
 
@@ -84,11 +87,11 @@ function App({openweathermap}) {
       <div className={styles.main}>
         <div className={styles.current}>
           <CurrentWeather
-          currentWeather={currentWeather}
-          currentLocation={currentLocation}
-          onSearch={onSearch}
-          addBookmark={addBookmark}
-          bookmark={bookmark}/>
+            currentWeather={currentWeather}
+            currentLocation={currentLocation}
+            onSearch={onSearch}
+            addBookmark={addBookmark}
+            bookmark={bookmark}/>
         </div>
         <div className={styles.info}>
           <WeekWeather
